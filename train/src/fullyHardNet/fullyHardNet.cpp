@@ -132,7 +132,7 @@ torch::Tensor TransitionUpImpl::forward(torch::Tensor x, torch::Tensor skip, boo
     return out;
 }
 
-HarDNetImpl::HarDNetImpl(int64_t n_classes) : finalConv(torch::nn::Conv2d(torch::nn::Conv2dOptions(1, 1, 1))) {
+HarDNetImpl::HarDNetImpl(int64_t n_classes) : finalConv(nullptr) {
     std::vector<int> first_ch({16, 24, 32, 48});
     std::vector<int> ch_list({64, 96, 160, 224, 320});
     float grmul = 1.7;
@@ -220,4 +220,3 @@ torch::Tensor HarDNetImpl::forward(torch::Tensor x) {
                                                       .align_corners(true));
     return out;
 }
-
